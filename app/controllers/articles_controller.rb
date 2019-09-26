@@ -17,12 +17,16 @@ class ArticlesController < ApplicationController
         @article = Article.new(article_params)
         @article.save
 
+        flash.notice = "Your article '#{@article.title}' has been created!"
+
         redirect_to article_path(@article)
     end
 
     def destroy
         @article = Article.find(params[:id])
         @article.destroy
+
+        flash.notice = "Your article '#{@article.title}' has been removed."
 
         redirect_to articles_path
     end
